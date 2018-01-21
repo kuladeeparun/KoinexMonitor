@@ -5,4 +5,8 @@
         <item>Bitcoin</item>
         <item>Ethereum</item>
     </string-array>
+    <string name="bitcoin"> Bitcoin </string>
+    <string name="ethereum"> Ethereum </string>
+    <string name="ripple"> Ripple </string>
+    <string name="button"> Make me rich! </string>
 </resources>

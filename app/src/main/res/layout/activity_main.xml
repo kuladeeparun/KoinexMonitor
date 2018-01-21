@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout android:orientation="vertical" xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -14,7 +14,7 @@
         android:layout_height="wrap_content"
         android:paddingTop="@dimen/activity_horizontal_margin"
         android:paddingBottom="@dimen/activity_horizontal_margin"
-        android:text="Make me money!"
+        android:text="@string/button"
         android:textColor="@color/black"
         android:textSize="20sp"
         android:textStyle="bold"/>
@@ -23,14 +23,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         >
-
-        <ProgressBar
-            android:id="@+id/progressBar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:indeterminate="true"
-            android:layout_centerHorizontal="true"
-            android:visibility="gone" />
 
         <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
             android:id="@+id/table"
@@ -44,7 +36,7 @@
             <TableRow>
                 <TextView
                     android:layout_column="1"
-                    android:text="Bitcoin"
+                    android:text="@string/bitcoin"
                     android:textColor="@color/white"
                     android:padding="10dip"
                     android:textSize="25sp"/>
@@ -59,7 +51,7 @@
             <TableRow>
                 <TextView
                     android:layout_column="1"
-                    android:text="Ripple"
+                    android:text="@string/ripple"
                     android:textColor="@color/white"
                     android:textSize="25sp"
                     android:padding="10dip" />
@@ -74,7 +66,7 @@
             <TableRow>
                 <TextView
                     android:layout_column="1"
-                    android:text="Ethereum"
+                    android:text="@string/ethereum"
                     android:textColor="@color/white"
                     android:textSize="25sp"
                     android:padding="10dip" />
@@ -89,63 +81,5 @@
 
         </TableLayout>
 
-
-
-        <!--<LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/table"
-
-            android:orientation="vertical">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Alert Settings"
-                android:textColor="@color/black"
-                android:textStyle="bold"
-                android:textSize="20sp"
-                />
-
-
-
-            <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
-
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:stretchColumns="1"
-                >
-
-                <TableRow>
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Cryptocurrency"
-                        />
-                    <Spinner
-                        android:id="@+id/spinner"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        />
-                </TableRow>
-
-                <TableRow>
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Value"
-                        />
-                    <EditText
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:ems="10"
-                        android:inputType="number"
-                        android:text="50.0"
-                        android:id="@+id/alertThreshold"
-                        />
-                </TableRow>
-
-            </TableLayout>
-        </LinearLayout>-->
     </RelativeLayout>
 </LinearLayout>
