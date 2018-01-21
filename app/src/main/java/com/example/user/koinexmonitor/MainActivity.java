@@ -12,8 +12,6 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.NotificationCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.view.View;
-import android.widget.Button;
 import android.widget.TextView;
 
 import org.json.JSONException;
@@ -41,8 +39,8 @@ public class MainActivity extends AppCompatActivity {
         rippleValue = findViewById(R.id.rippleValue);
         ethereumValue = findViewById(R.id.ethereumValue);
 
-        Button queryButton = findViewById(R.id.queryButton);
-        /*queryButton.setOnClickListener(new View.OnClickListener() {
+        /*Button queryButton = findViewById(R.id.queryButton);
+        queryButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 scheduleAlarm();
@@ -60,14 +58,21 @@ public class MainActivity extends AppCompatActivity {
 
         long firstMillis = System.currentTimeMillis();
         AlarmManager alarm = (AlarmManager) this.getSystemService(Context.ALARM_SERVICE);
-        alarm.setInexactRepeating(AlarmManager.RTC_WAKEUP, firstMillis,
-                AlarmManager.INTERVAL_FIFTEEN_MINUTES, pIntent);
+        if (alarm != null) {
+            alarm.setInexactRepeating(AlarmManager.RTC_WAKEUP, firstMillis,
+                    AlarmManager.INTERVAL_FIFTEEN_MINUTES, pIntent);
+        }
     }
 
 
-    class BackgroundService extends IntentService {
+    public class BackgroundService extends IntentService {
 
         public static final int REQUEST_CODE = 12345;
+
+        public BackgroundService(){
+            super("No argument");
+        }
+
         public BackgroundService(String name) {
             super(name);
         }
@@ -118,16 +123,16 @@ public class MainActivity extends AppCompatActivity {
             }
 
 
-            String bitcoinValue2=null, rippleValue2=null, ethereumValue2 = null;
+            String bitcoinCurrentValue=null, rippleCurrentValue=null, ethereumCurrentValue = null;
             try {
                 JSONObject object = new JSONObject(response);
-                bitcoinValue2 = object.getJSONObject("prices").getString("BTC");
-                rippleValue2 = object.getJSONObject("prices").getString("XRP");
-                ethereumValue2 = object.getJSONObject("prices").getString("ETH");
+                bitcoinCurrentValue = object.getJSONObject("prices").getString("BTC");
+                rippleCurrentValue = object.getJSONObject("prices").getString("XRP");
+                ethereumCurrentValue = object.getJSONObject("prices").getString("ETH");
 
-                bitcoinValue.setText(bitcoinValue2);
-                rippleValue.setText(rippleValue2);
-                ethereumValue.setText(ethereumValue2);
+                bitcoinValue.setText(bitcoinCurrentValue);
+                rippleValue.setText(rippleCurrentValue);
+                ethereumValue.setText(ethereumCurrentValue);
             }
             catch (JSONException e) {
                 Log.i("INFO", response);
@@ -137,14 +142,16 @@ public class MainActivity extends AppCompatActivity {
                     new NotificationCompat.Builder(getApplicationContext(), "2")
                             .setSmallIcon(R.drawable.ic_stat_attach_money)
                             .setContentTitle("Check out the prices")
-                            .setContentText("BTC " + bitcoinValue2 + " | XRP " + rippleValue2 + " | ETH " + ethereumValue2);
+                            .setContentText("BTC " + bitcoinCurrentValue + " | XRP " + rippleCurrentValue + " | ETH " + ethereumCurrentValue);
 
-            int mNotificationId = 001;
+            int mNotificationId = 1;
 
             NotificationManager mNotifyMgr =
                     (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
 
-            mNotifyMgr.notify(mNotificationId, mBuilder.build());
+            if (mNotifyMgr != null) {
+                mNotifyMgr.notify(mNotificationId, mBuilder.build());
+            }
         }
     }
 
