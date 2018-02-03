@@ -21,8 +21,14 @@
         </activity>
 
         <service
-            android:name=".MainActivity$BackgroundService"
+            android:name=".BackgroundService"
             android:exported="false" />
+
+        <receiver android:name=".MyReceiver" android:process=":remote">
+                <intent-filter>
+                    <action android:name="KOINEX_API_FETCH"/>
+                </intent-filter>
+        </receiver>
 
     </application>
 
